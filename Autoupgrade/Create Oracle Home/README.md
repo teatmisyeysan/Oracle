@@ -20,10 +20,10 @@ dl.folder=/u01/app/oracle/autoupgrade/patches
 dl.patch=RECOMMENDED
 dl.target_version=23
 dl.platform=LINUX.X64
-[oracle@ms-vm-01 etc]$
+
 ```
 ```bash
-[oracle@ms-vm-01 etc]$ vi au-create-home.cfg
+vi au-create-home.cfg
 global.global_log_dir=/u01/app/oracle/autoupgrade/logs
 global.keystore=/u01/app/oracle/autoupgrade/keystore
 crh.folder=/u01/app/oracle/autoupgrade/patches
@@ -37,7 +37,7 @@ crh.home_settings.oracle_base=/u01/app/oracle
 crh.home_settings.inventory_location=/u01/app/oraInventory
 crh.upgrade_node=ms-vm-01
 crh.download=no
-[oracle@ms-vm-01 etc]$
+
 ```
 ## 1. Load Credential 
 ```bash
