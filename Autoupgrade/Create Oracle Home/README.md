@@ -194,7 +194,7 @@ Please check the summary report at:
 [oracle@ms-vm-01 autoupgrade]$
 
 ```
-### 4. Run Root.sh
+## 4. Run Root.sh
 ```bash
 [root@ms-vm-01 install]# /u01/app/oracle/product/23.26.3/dbhome_1/root.sh
 Check /u01/app/oracle/product/23.26.3/dbhome_1/install/root_ms-vm-01.localdomain_2026-08-19_14-05-48-410011221.log for the output of root script
@@ -218,7 +218,7 @@ Now product-specific root actions will be performed.
 ```
 
 
-### 5. Validate Patch
+## 5. Validate Patch
 ```bash
 [oracle@ms-vm-01 OPatch]$ export ORACLE_HOME=/u01/app/oracle/product/23.26.3/dbhome_1
 [oracle@ms-vm-01 OPatch]$ export PATH=$ORACLE_HOME/OPatch:$PATH
