@@ -273,9 +273,168 @@ Jobs failed                    [0]
 Jobs restored                  [0]
 Jobs pending                   [0]
 
-
 Please check the summary report at:
 /u01/app/oracle/autoupgrade/logs/cfgtoollogs/upgrade/auto/status/status.html
 /u01/app/oracle/autoupgrade/logs/cfgtoollogs/upgrade/auto/status/status.log
 [oracle@ms-vm-01 etc]$
-``
+```
+
+### 6. Validate Log
+```bash
+[oracle@ms-vm-01 etc]$ cat  /u01/app/oracle/autoupgrade/logs/cfgtoollogs/upgrade/auto/status/status.log
+==========================================
+          Autoupgrade Summary Report
+==========================================
+[Date]           Wed Aug 19 16:30:44 ICT 2026
+[Number of Jobs] 1
+==========================================
+[Job ID] 102
+==========================================
+[DB Name]                PROD19C
+[Version Before Upgrade] 19.30.0.0.0
+[Version After Upgrade]  23.26.3.0.0
+------------------------------------------
+[Stage Name]    PREUPGRADE
+[Status]        SUCCESS
+[Start Time]    2026-08-19 15:13:25
+[Duration]      0:00:00
+[Log Directory] /u01/app/oracle/autoupgrade/logs/PROD19C/102/preupgrade
+------------------------------------------
+[Stage Name]    PRECHECKS
+[Status]        SUCCESS
+[Start Time]    2026-08-19 15:13:25
+[Duration]      0:00:16
+[Log Directory] /u01/app/oracle/autoupgrade/logs/PROD19C/102/prechecks
+[Detail]        /u01/app/oracle/autoupgrade/logs/PROD19C/102/prechecks/prod19c_preupgrade.log
+                Check passed and no manual intervention needed
+------------------------------------------
+[Stage Name]    PREFIXUPS
+[Status]        SUCCESS
+[Start Time]    2026-08-19 15:13:41
+[Duration]      0:04:38
+[Log Directory] /u01/app/oracle/autoupgrade/logs/PROD19C/102/prefixups
+[Detail]        /u01/app/oracle/autoupgrade/logs/PROD19C/102/prefixups/prefixups.html
+------------------------------------------
+[Stage Name]    DRAIN
+[Status]        SUCCESS
+[Start Time]    2026-08-19 15:18:20
+[Duration]      0:03:26
+[Log Directory] /u01/app/oracle/autoupgrade/logs/PROD19C/102/drain
+------------------------------------------
+[Stage Name]    DBUPGRADE
+[Status]        SUCCESS
+[Start Time]    2026-08-19 15:30:08
+[Duration]      0:44:36
+[Log Directory] /u01/app/oracle/autoupgrade/logs/PROD19C/102/dbupgrade
+------------------------------------------
+[Stage Name]    POSTCHECKS
+[Status]        SUCCESS
+[Start Time]    2026-08-19 16:14:46
+[Duration]      0:00:04
+[Log Directory] /u01/app/oracle/autoupgrade/logs/PROD19C/102/postchecks
+[Detail]        /u01/app/oracle/autoupgrade/logs/PROD19C/102/postchecks/prod19c_postupgrade.log
+                Check passed and no manual intervention needed
+------------------------------------------
+[Stage Name]    POSTFIXUPS
+[Status]        SUCCESS
+[Start Time]    2026-08-19 16:14:51
+[Duration]      0:10:42
+[Log Directory] /u01/app/oracle/autoupgrade/logs/PROD19C/102/postfixups
+[Detail]        /u01/app/oracle/autoupgrade/logs/PROD19C/102/postfixups/postfixups.html
+------------------------------------------
+[Stage Name]    POSTUPGRADE
+[Status]        SUCCESS
+[Start Time]    2026-08-19 16:25:34
+[Duration]      0:00:01
+[Log Directory] /u01/app/oracle/autoupgrade/logs/PROD19C/102/postupgrade
+------------------------------------------
+[Stage Name]    SYSUPDATES
+[Status]        SUCCESS
+[Start Time]    2026-08-19 16:25:35
+[Duration]      0:05:09
+[Log Directory] /u01/app/oracle/autoupgrade/logs/PROD19C/102/sysupdates
+------------------------------------------
+Summary:/u01/app/oracle/autoupgrade/logs/PROD19C/102/dbupgrade/upg_summary.log
+[oracle@ms-vm-01 etc]$
+```
+<img width="987" height="569" alt="image" src="https://github.com/user-attachments/assets/c6ed0649-802d-47b8-895a-2e335cc1f1c9" />
+
+### 7. Post-Upgrade
+```bash
+[oracle@ms-vm-01 ~]$ . db26ai
+[oracle@ms-vm-01 ~]$ sqlplus / as sysdba
+
+SQL*Plus: Release 23.26.3.0.0 - Production on Wed Aug 19 16:47:35 2026
+Version 23.26.3.0.0
+
+Copyright (c) 1982, 2026, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle AI Database 26ai Enterprise Edition Release 23.26.3.0.0 - Production
+Version 23.26.3.0.0
+
+SQL>
+SQL> SELECT * FROM v$timezone_file;
+
+FILENAME                VERSION     CON_ID
+-------------------- ---------- ----------
+timezlrg_45.dat              45          0
+
+SQL> SET LINESIZE 200
+COLUMN comp_name FORMAT A50
+COLUMN version FORMAT A15
+COLUMN status FORMAT A10
+
+SELECT comp_name, version, status
+FROM dba_registry
+ORDER BY comp_name;
+SQL> SQL> SQL> SQL> SQL>   2    3
+COMP_NAME                                          VERSION         STATUS
+-------------------------------------------------- --------------- ----------
+JServer JAVA Virtual Machine                       23.0.0.0.0      VALID
+OLAP Analytic Workspace                            23.0.0.0.0      VALID
+Oracle Database Catalog Views                      23.0.0.0.0      VALID
+Oracle Database Java Packages                      23.0.0.0.0      VALID
+Oracle Database Packages and Types                 23.0.0.0.0      VALID
+Oracle Database Vault                              23.0.0.0.0      VALID
+Oracle Label Security                              23.0.0.0.0      VALID
+Oracle OLAP API                                    23.0.0.0.0      VALID
+Oracle Real Application Clusters                   23.0.0.0.0      OPTION OFF
+Oracle Text                                        23.0.0.0.0      VALID
+Oracle Workspace Manager                           23.0.0.0.0      VALID
+
+COMP_NAME                                          VERSION         STATUS
+-------------------------------------------------- --------------- ----------
+Oracle XDK                                         23.0.0.0.0      VALID
+Oracle XML Database                                23.0.0.0.0      VALID
+Spatial                                            23.0.0.0.0      VALID
+
+14 rows selected.
+
+SQL>
+
+```
+```bash
+SQL> SET LINESIZE 200
+SQL> COLUMN action_time FORMAT A12
+COLUMN action FORMAT A10
+COLUMN status FORMAT A10
+COLUMN description FORMAT A80
+SQL> COLUMN patch_id FORMAT 99999999
+
+SELECT TO_CHAR(action_time, 'YYYY-MM-DD') AS action_time,
+SQL> SQL>        action,
+       status,
+       description,
+       patch_SQL> id
+FROM   sys.dba_registry_sqlpatch
+ORDER  BY action_time;
+SQL> SQL>   2    3    4    5    6    7
+ACTION_TIME  ACTION     STATUS     DESCRIPTION                                                                       PATCH_ID
+------------ ---------- ---------- -------------------------------------------------------------------------------- ---------
+2026-08-19   APPLY      SUCCESS    DATAPUMP BUNDLE PATCH 23.26.3.0.0                                                 39593097
+2026-08-19   APPLY      SUCCESS    Database Release Update : 23.26.3.0.0 (39578879) Gold Image                       39578879
+
+SQL>
+```
