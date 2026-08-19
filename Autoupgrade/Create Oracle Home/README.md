@@ -2,7 +2,40 @@
 # Install a New Oracle home for Oracle AI Database 26ai
 * Prerequisites
 ```bash
-
+mkdir autoupgrade
+mkdir autoupgrade/logs
+mkdir autoupgrade/patches
+mkdir autoupgrade/keystore
+mkdir autoupgrade/etc
+mkdir -p /u01/app/oracle/product/23.26.3/dbhome_1
+```
+```bash
+vi au-download.cfg
+global.global_log_dir=/u01/app/oracle/autoupgrade/logs
+global.keystore=/u01/app/oracle/autoupgrade/keystore
+dl.folder=/u01/app/oracle/autoupgrade/patches
+dl.patch=RECOMMENDED
+dl.target_version=23
+dl.platform=LINUX.X64
+[oracle@ms-vm-01 etc]$
+```
+```bash
+[oracle@ms-vm-01 etc]$ vi au-create-home.cfg
+global.global_log_dir=/u01/app/oracle/autoupgrade/logs
+global.keystore=/u01/app/oracle/autoupgrade/keystore
+crh.folder=/u01/app/oracle/autoupgrade/patches
+crh.patch=RECOMMENDED
+crh.target_version=26
+crh.source_home=/u01/app/oracle/product/19.0.0/dbhome_1
+crh.platform=LINUX.X64
+crh.target_home=/u01/app/oracle/product/23.26.3/dbhome_1
+crh.home_settings.edition=EE
+crh.home_settings.oracle_base=/u01/app/oracle
+crh.home_settings.inventory_location=/u01/app/oraInventory
+crh.upgrade_node=ms-vm-01
+crh.download=no
+[oracle@ms-vm-01 etc]$
+```
 ## 1. Load Credential 
 ```bash
 [oracle@ms-vm-01 autoupgrade]$ java -jar autoupgrade.jar -config etc/au-download.cfg -patch -load_password
