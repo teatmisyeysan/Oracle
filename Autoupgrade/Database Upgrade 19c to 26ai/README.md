@@ -22,7 +22,7 @@ build.MOS_LINK https://support.oracle.com/support/?anchorId=&kmContentId=2485457
 [oracle@ms-vm-01 admin]$
 ```
 
-### 3. Generate a Sample Config File
+## 3. Generate a Sample Config File
 Use the Java bundled with the target Oracle 26ai home:
 ```bash
 $ORACLE_BASE/product/23.26.3/dbhome_1/jdk/bin/java \
@@ -279,7 +279,7 @@ Please check the summary report at:
 [oracle@ms-vm-01 etc]$
 ```
 
-### 6. Validate Log
+## 6. Validate Log
 ```bash
 [oracle@ms-vm-01 etc]$ cat  /u01/app/oracle/autoupgrade/logs/cfgtoollogs/upgrade/auto/status/status.log
 ==========================================
