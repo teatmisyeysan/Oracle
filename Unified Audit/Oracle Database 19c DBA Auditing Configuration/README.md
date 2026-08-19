@@ -6,24 +6,24 @@ SHOW PARAMETER audit_trail;
 ```
 
 ## 2. Enable Unified Auditing (If Not Enabled)
-### a) Shutdown database.
+### A. Shutdown database.
 ```bash
 sqlplus / as sysdba
 shut immediate;
 ```
 
-### b) Relink Oracle Binary with Unified Auditing Enabled
+### B. Relink Oracle Binary with Unified Auditing Enabled
 ```bash
 cd $ORACLE_HOME/rdbms/lib
 make -f ins_rdbms.mk uniaud_on ioracle
 ```
-### c) Start database.
+### C. Start database.
 ```bash
 sqlplus / as sysdba
 startup;
 ```
 
-### d) Verify Unified Auditing Status.
+### D. Verify Unified Auditing Status.
 ```bash
 SELECT VALUE FROM V$OPTION WHERE PARAMETER = 'Unified Auditing';
 ```
