@@ -359,7 +359,7 @@ Summary:/u01/app/oracle/autoupgrade/logs/PROD19C/102/dbupgrade/upg_summary.log
 ```
 <img width="987" height="569" alt="image" src="https://github.com/user-attachments/assets/c6ed0649-802d-47b8-895a-2e335cc1f1c9" />
 
-### 7. Post-Upgrade
+## 7. Post-Upgrade
 ```bash
 [oracle@ms-vm-01 ~]$ . db26ai
 [oracle@ms-vm-01 ~]$ sqlplus / as sysdba
