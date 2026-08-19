@@ -2,6 +2,9 @@
 # Install a New Oracle home for Oracle AI Database 26ai
 * Prerequisites
 ```bash
+wget https://download.oracle.com/otn-pub/otn_software/autoupgrade.jar
+```
+```bash
 mkdir autoupgrade
 mkdir autoupgrade/logs
 mkdir autoupgrade/patches
