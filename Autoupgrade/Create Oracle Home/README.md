@@ -1,6 +1,7 @@
 
 # Install a New Oracle home for Oracle AI Database 26ai
 * Prerequisites
+```bash
 
 ## 1. Load Credential 
 ```bash
@@ -178,4 +179,23 @@ Database Configuration Assistant when a database is created
 Finished running generic part of root script.
 Now product-specific root actions will be performed.
 [root@ms-vm-01 install]#
+```
+
+
+### 5. Validate Patch
+```bash
+[oracle@ms-vm-01 OPatch]$ export ORACLE_HOME=/u01/app/oracle/product/23.26.3/dbhome_1
+[oracle@ms-vm-01 OPatch]$ export PATH=$ORACLE_HOME/OPatch:$PATH
+[oracle@ms-vm-01 OPatch]$ ./opatch lspatches
+39788260;Fix for Bug 39788260
+39779540;39779540:Fix for Bug 39779540
+39779336;Fix for Bug 39779336
+39739695;Fix for Bug 39739695
+39661089;Fix for Bug 39661089
+39593097;DATAPUMP BUNDLE PATCH 23.26.3.0.0
+39578859;OCW RELEASE UPDATE 23.26.3.0.0 (39578859) Gold Image
+39578879;Database Release Update : 23.26.3.0.0 (39578879) Gold Image
+
+OPatch succeeded.
+[oracle@ms-vm-01 OPatch]$
 ```
