@@ -109,9 +109,8 @@ SQL>
 ```
 <img width="921" height="615" alt="image" src="https://github.com/user-attachments/assets/b69f3e3d-7d6c-454a-82c1-3bee98a22e00" />
 
-* Check report failed and fixed with reclaim space on +RECO
-
-* Pre-check again
+Check report failed and fixed with reclaim space on +RECO
+Pre-check again
 ```bash
 [oracle@ms-vm-01 etc]$ java -jar /u01/app/oracle/product/23.26.3/dbhome_1/rdbms/admin/autoupgrade.jar -config /u01/app/oracle/autoupgrade/etc/au-upgrade.cfg -mode analyze
 AutoUpgrade 26.5.260807 launched with default internal options
@@ -177,3 +176,106 @@ Please check the summary report at:
 ```
 
 <img width="924" height="574" alt="image" src="https://github.com/user-attachments/assets/dab19c26-e25f-4498-af39-6fee99bdf775" />
+
+## 5. Start the Upgrade (DEPLOY Mode)
+```bash
+[oracle@ms-vm-01 etc]$ java -jar /u01/app/oracle/product/23.26.3/dbhome_1/rdbms/admin/autoupgrade.jar -config /u01/app/oracle/autoupgrade/etc/au-upgrade.cfg -mode deploy
+Previous execution found loading latest data
+Total jobs recovered: 1
+Loading AutoUpgrade keystore
+AutoUpgrade keystore is loaded
++--------------------------------+
+| Starting AutoUpgrade execution |
++--------------------------------+
+Type 'help' to list console commands
+upg> ls
+Unrecognized cmd: ls
+upg> lsj
++----+-------+---------+---------+-------+----------+-------+-------+
+|Job#|DB_NAME|    STAGE|OPERATION| STATUS|START_TIME|UPDATED|MESSAGE|
++----+-------+---------+---------+-------+----------+-------+-------+
+| 102|PROD19C|DBUPGRADE|EXECUTING|RUNNING|  15:13:25| 3s ago|Running|
++----+-------+---------+---------+-------+----------+-------+-------+
+Total jobs 1
+
+upg> lsj
++----+-------+---------+---------+-------+----------+-------+--------------------+
+|Job#|DB_NAME|    STAGE|OPERATION| STATUS|START_TIME|UPDATED|             MESSAGE|
++----+-------+---------+---------+-------+----------+-------+--------------------+
+| 102|PROD19C|DBUPGRADE|EXECUTING|RUNNING|  15:13:25|13s ago|23%Upgraded CDB$ROOT|
++----+-------+---------+---------+-------+----------+-------+--------------------+
+Total jobs 1
+
+upg> status -job 102
+Details
+
+        Job No           102
+        Oracle SID       PROD19C
+        Start Time       26/08/19 15:13:25
+        Elapsed (min):   76
+        End time:        N/A
+
+Logfiles
+
+        Logs Base:    /u01/app/oracle/autoupgrade/logs/PROD19C
+        Job logs:     /u01/app/oracle/autoupgrade/logs/PROD19C/102
+        Stage logs:   /u01/app/oracle/autoupgrade/logs/PROD19C/102/sysupdates
+        TimeZone:     /u01/app/oracle/autoupgrade/logs/PROD19C/temp
+        Remote Dirs:
+
+Stages
+        SETUP            <1 min
+        PREUPGRADE       <1 min
+        PRECHECKS        <1 min
+        PREFIXUPS        4 min
+        DRAIN            3 min
+        DBUPGRADE        44 min
+        DISPATCH         <1 min
+        POSTCHECKS       <1 min
+        DISPATCH         <1 min
+        POSTFIXUPS       10 min
+        POSTUPGRADE      <1 min
+        SYSUPDATES       ~4 min (RUNNING)
+
+Stage-Progress Per Container
+
+        +--------+----------+
+        |Database|SYSUPDATES|
+        +--------+----------+
+        |CDB$ROOT|     1  % |
+        |PDB$SEED|     0  % |
+        |     PDB|     0  % |
+        +--------+----------+
+
+upg> tasks
++--+--------------+-------------+
+|ID|          NAME|         Job#|
++--+--------------+-------------+
+| 1|          main|      WAITING|
+|10|Common-Cleaner|TIMED_WAITING|
+|18|    event_loop|TIMED_WAITING|
+|19|       console|     RUNNABLE|
+|20|  queue_reader|      WAITING|
+|22|         cmd-0|      WAITING|
+|23|       StatUpg|      WAITING|
+|24|    event_loop|TIMED_WAITING|
+|26| job_manager-0|TIMED_WAITING|
+|33|     exec_loop|      WAITING|
+|34|     exec_loop|      WAITING|
++--+--------------+-------------+
+upg>
+upg> Job 102 completed
+------------------- Final Summary --------------------
+Number of databases            [ 1 ]
+
+Jobs finished                  [1]
+Jobs failed                    [0]
+Jobs restored                  [0]
+Jobs pending                   [0]
+
+
+Please check the summary report at:
+/u01/app/oracle/autoupgrade/logs/cfgtoollogs/upgrade/auto/status/status.html
+/u01/app/oracle/autoupgrade/logs/cfgtoollogs/upgrade/auto/status/status.log
+[oracle@ms-vm-01 etc]$
+``
