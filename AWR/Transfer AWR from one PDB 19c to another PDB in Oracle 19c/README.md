@@ -322,6 +322,137 @@ SQL>
 
 ```
 
+## 9. Generate AWR on target after loaded
+```bash
+[oracle@dev-dbserver01 ~]$ sqlplus / as sysdba
+
+SQL*Plus: Release 19.0.0.0.0 - Production on Sat Aug 22 09:20:07 2026
+Version 19.32.0.0.0
+
+Copyright (c) 1982, 2026, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 19c Enterprise Edition Release 19.0.0.0.0 - Production
+Version 19.32.0.0.0
+
+SQL> show pdbs;
+
+    CON_ID CON_NAME                       OPEN MODE  RESTRICTED
+---------- ------------------------------ ---------- ----------
+         2 PDB$SEED                       READ ONLY  NO
+         3 PDB19C                         READ WRITE NO
+SQL>
+SQL> alter session set container=pdb19c;
+
+Session altered.
+
+SQL> show pdbs;
+
+    CON_ID CON_NAME                       OPEN MODE  RESTRICTED
+---------- ------------------------------ ---------- ----------
+         3 PDB19C                         READ WRITE NO
+SQL>
+SQL>
+SQL> @?/rdbms/admin/awrrpti.sql;
+
+Specify the Report Type
+~~~~~~~~~~~~~~~~~~~~~~~
+AWR reports can be generated in the following formats.  Please enter the
+name of the format at the prompt. Default value is 'html'.
+
+   'html'          HTML format (default)
+   'text'          Text format
+   'active-html'   Includes Performance Hub active report
+
+Enter value for report_type:
+
+
+
+Type Specified: html
+
+
+Specify the location of AWR Data
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+AWR_ROOT - Use AWR data from root (default)
+AWR_PDB - Use AWR data from PDB
+Enter value for awr_location: AWR_PDB
+
+Location of AWR Data Specified: AWR_PDB
+
+
+Instances in this Workload Repository schema
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  DB Id      Inst Num   DB Name      Instance     Host
+------------ ---------- ---------    ----------   ------
+  228667876      1      CDB19C       cdb19c       NR-UAT-SV01
+  2332625880     1      CDB19C       cdb19c       dev-dbserver
+
+Enter value for dbid: 228667876
+Using 228667876 for database Id
+Enter value for inst_num: 1
+Using 1 for instance number
+
+
+Specify the number of days of snapshots to choose from
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Entering the number of days (n) will result in the most recent
+(n) days of snapshots being listed.  Pressing <return> without
+specifying a number lists all completed snapshots.
+
+
+Enter value for num_days: 3
+
+Listing the last 3 days of Completed Snapshots
+Instance     DB Name      Snap Id       Snap Started    Snap Level
+------------ ------------ ---------- ------------------ ----------
+
+cdb19c       CDB19C               1  21 Aug 2026 16:46    1
+                                  2  21 Aug 2026 18:00    1
+                                  3  21 Aug 2026 19:00    1
+                                  4  21 Aug 2026 20:00    1
+                                  5  21 Aug 2026 21:00    1
+                                  6  21 Aug 2026 22:00    1
+                                  7  21 Aug 2026 23:00    1
+                                  8  22 Aug 2026 00:00    1
+                                  9  22 Aug 2026 01:00    1
+                                 10  22 Aug 2026 02:00    1
+                                 11  22 Aug 2026 03:00    1
+                                 12  22 Aug 2026 04:00    1
+                                 13  22 Aug 2026 05:00    1
+                                 14  22 Aug 2026 06:00    1
+                                 15  22 Aug 2026 07:00    1
+                                 16  22 Aug 2026 08:00    1
+
+
+Specify the Begin and End Snapshot Ids
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Enter value for begin_snap: 15
+Begin Snapshot Id specified: 15
+
+Enter value for end_snap: 16
+End   Snapshot Id specified: 16
+
+
+
+Specify the Report Name
+~~~~~~~~~~~~~~~~~~~~~~~
+The default report file name is awrrpt_1_15_16.html.  To use this name,
+press <return> to continue, otherwise enter an alternative.
+
+Enter value for report_name: awrrpt_1_15_16_pdb19c.html
+
+Using the report name awrrpt_1_15_16_pdb19c.html
+
+<html lang="en"><head><title>AWR Report for DB: CDB19C, Inst: cdb19c, Snaps: 15-16</title>
+........
+
+<p />
+End of Report
+</body></html>
+Report written to awrrpt_1_15_16_pdb19c.html
+SQL>
+```
 
 
 
