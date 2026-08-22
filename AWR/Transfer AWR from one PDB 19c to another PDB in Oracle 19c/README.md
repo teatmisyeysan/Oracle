@@ -289,7 +289,7 @@ Enter value for directory_name: DATA_PUMP_DIR
 
 Using the dump directory: DATA_PUMP_DIR
 ```
-Specify file name "awrdat_2_16_20260822.dmp"
+Specify file name "awrdat_2_16_20260822"
 ```bash
 Specify the Name of the Dump File to Load
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
