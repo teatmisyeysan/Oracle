@@ -95,6 +95,7 @@ CDB19C               1 21 Aug 2026 16:46
 
 ```
 ## 4. It will list the 3 days snapshot in AWR. Choose the begin and end snapshot for export:
+```bash
 Specify the Begin and End Snapshot Ids
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Enter value for begin_snap: 2
@@ -105,7 +106,7 @@ End   Snapshot Id specified: 16
 ```
 
 ## 5. List the Directory present in Database, Choose the directory location and dump file name "DATA_PUMP_DIR":
-```basg
+```bash
 Specify the Directory Name
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
