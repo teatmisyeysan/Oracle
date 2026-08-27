@@ -285,3 +285,135 @@ Now product-specific root actions will be performed.
 <img width="802" height="635" alt="image" src="https://github.com/user-attachments/assets/22e4d261-b059-42f8-b72a-05f400698245" />
 
 # 16
+<img width="802" height="632" alt="image" src="https://github.com/user-attachments/assets/fd46c2af-d7a3-4e3b-8171-6e817c4ac6bf" />
+
+# 17
+<img width="800" height="632" alt="image" src="https://github.com/user-attachments/assets/e4c5880b-5e2d-4a87-b903-f4ccf6a63cd2" />
+
+# 18
+```bash
+[oracle@ms-vm-01 dbhome_1]$
+[oracle@ms-vm-01 dbhome_1]$ sqlplus / as sysdba
+
+SQL*Plus: Release 23.26.1.0.0 - Production on Thu Aug 27 22:58:57 2026
+Version 23.26.1.0.0
+
+Copyright (c) 1982, 2025, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle AI Database 26ai Enterprise Edition Release 23.26.1.0.0 - Production
+Version 23.26.1.0.0
+
+SQL>
+SQL> show parameter name;
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------------------------
+cdb_cluster_name                     string
+cell_offloadgroup_name               string
+db_file_name_convert                 string
+db_name                              string      cdb26ai
+db_unique_name                       string      cdb26ai
+global_names                         boolean     FALSE
+instance_name                        string      cdb26ai
+lock_name_space                      string
+log_file_name_convert                string
+mfa_sender_email_displayname         string
+pdb_file_name_convert                string
+
+NAME                                 TYPE        VALUE
+------------------------------------ ----------- ------------------------------
+processor_group_name                 string
+service_names                        string      cdb26ai
+SQL>
+SQL>
+SQL> show pdbs;
+
+    CON_ID CON_NAME                       OPEN MODE  RESTRICTED
+---------- ------------------------------ ---------- ----------
+         2 PDB$SEED                       READ ONLY  NO
+         3 AI26PDB1                       READ WRITE NO
+SQL>
+SQL>
+SQL>
+SQL> select instance_name,status,name,open_mode from v$instance,v$database;
+
+INSTANCE_NAME    STATUS       NAME      OPEN_MODE
+---------------- ------------ --------- --------------------
+cdb26ai          OPEN         CDB26AI   READ WRITE
+
+SQL>
+SQL>
+SQL> select name from v$datafile;
+
+NAME
+--------------------------------------------------------------------------------
++DATA/CDB26AI/DATAFILE/system.258.1242427917
++DATA/CDB26AI/48945B67D122C623E063399B5E6478E6/DATAFILE/system.259.1242427951
++DATA/CDB26AI/DATAFILE/sysaux.260.1242427967
++DATA/CDB26AI/48945B67D122C623E063399B5E6478E6/DATAFILE/sysaux.261.1242427983
++DATA/CDB26AI/DATAFILE/users.262.1242427989
++DATA/CDB26AI/48945B67D122C623E063399B5E6478E6/DATAFILE/undotbs1.263.1242427991
++DATA/CDB26AI/DATAFILE/undotbs1.257.1242427915
++DATA/CDB26AI/5A0A662FB86FB9D5E0636FC8760AC624/DATAFILE/system.276.1242428277
++DATA/CDB26AI/5A0A662FB86FB9D5E0636FC8760AC624/DATAFILE/sysaux.277.1242428277
++DATA/CDB26AI/5A0A662FB86FB9D5E0636FC8760AC624/DATAFILE/undotbs1.275.1242428277
++DATA/CDB26AI/5A0A662FB86FB9D5E0636FC8760AC624/DATAFILE/users.279.1242428299
+
+11 rows selected.
+
+SQL>
+SQL> exit
+Disconnected from Oracle AI Database 26ai Enterprise Edition Release 23.26.1.0.0 - Production
+Version 23.26.1.0.0
+[oracle@ms-vm-01 dbhome_1]$
+[oracle@ms-vm-01 dbhome_1]$
+[oracle@ms-vm-01 dbhome_1]$ ps -ef |grep pmon
+grid       83088       1  0 22:19 ?        00:00:00 asm_pmon_+ASM
+oracle    112622       1  0 22:57 ?        00:00:00 ora_pmon_cdb26ai
+oracle    114310   85700  0 23:00 pts/2    00:00:00 grep --color=auto pmon
+[oracle@ms-vm-01 dbhome_1]$
+[oracle@ms-vm-01 dbhome_1]$
+[oracle@ms-vm-01 dbhome_1]$ lsnrctl status
+
+LSNRCTL for Linux: Version 23.26.1.0.0 - Production on 27-AUG-2026 23:00:41
+
+Copyright (c) 1991, 2026, Oracle.  All rights reserved.
+
+Connecting to (ADDRESS=(PROTOCOL=tcp)(HOST=)(PORT=1521))
+STATUS of the LISTENER
+------------------------
+Alias                     LISTENER
+Version                   TNSLSNR for Linux: Version 23.26.1.0.0 - Production
+Start Date                27-AUG-2026 22:18:36
+Uptime                    0 days 0 hr. 42 min. 5 sec
+Trace Level               off
+Security                  ON: Local OS Authentication
+SNMP                      OFF
+Listener Parameter File   /u01/app/26.0.0/grid/network/admin/listener.ora
+Listener Log File         /u01/app/grid/diag/tnslsnr/ms-vm-01/listener/alert/log.xml
+Listening Endpoints Summary...
+  (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=ms-vm-01.localdomain)(PORT=1521)))
+  (DESCRIPTION=(ADDRESS=(PROTOCOL=ipc)(KEY=EXTPROC1521)))
+Services Summary...
+Service "+ASM" has 1 instance(s).
+  Instance "+ASM", status READY, has 1 handler(s) for this service...
+Service "+ASM_DATA" has 1 instance(s).
+  Instance "+ASM", status READY, has 1 handler(s) for this service...
+Service "48945b67d121c623e063399b5e6478e6" has 1 instance(s).
+  Instance "cdb26ai", status READY, has 1 handler(s) for this service...
+Service "5a0a662fb86fb9d5e0636fc8760ac624" has 1 instance(s).
+  Instance "cdb26ai", status READY, has 1 handler(s) for this service...
+Service "ai26pdb1" has 1 instance(s).
+  Instance "cdb26ai", status READY, has 1 handler(s) for this service...
+Service "cdb26ai" has 1 instance(s).
+  Instance "cdb26ai", status READY, has 1 handler(s) for this service...
+Service "cdb26aiXDB" has 1 instance(s).
+  Instance "cdb26ai", status READY, has 1 handler(s) for this service...
+The command completed successfully
+[oracle@ms-vm-01 dbhome_1]$
+
+```
+<img width="677" height="782" alt="image" src="https://github.com/user-attachments/assets/a69c6ad2-6d43-44bc-beba-59551e464d05" />
+
