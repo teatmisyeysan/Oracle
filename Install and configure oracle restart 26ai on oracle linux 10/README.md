@@ -1,4 +1,5 @@
-## Bug 
+## Bug 38622857
+https://docs.oracle.com/en/database/oracle/oracle-database/26/rnrdm/bug-38622857.html
 ```bash
 [grid@ms-vm-01 grid]$ ./gridSetup.sh
 ERROR: Unable to verify the graphical display setup. This application requires X display. Make sure that xdpyinfo exist under PATH variable.
