@@ -86,3 +86,5 @@ ms-vm-01     2026/08/27 22:17:29     /u01/app/grid/crsdata/ms-vm-01/olr/backup_2
 
 # 15
 
+<img width="802" height="635" alt="image" src="https://github.com/user-attachments/assets/f93d5595-5d10-4140-a620-c7914e3dccd2" />
+
