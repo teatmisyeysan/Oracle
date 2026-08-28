@@ -809,3 +809,39 @@ Operating system:             Linux5.15.0-206.153.7.1.el8uek.x86_64
 [grid@ms-ol-node-01 grid]$
 
 ```
+## Step 12: Grid Infrastructure Installation 
+### 1: Select Configuration Option
+<img width="842" height="631" alt="image" src="https://github.com/user-attachments/assets/b3899021-f836-49e7-8065-cca27fe2125a" />
+
+### 2: Select Cluster Configuration
+<img width="834" height="629" alt="image" src="https://github.com/user-attachments/assets/ffdc426b-15fa-4bc5-bb2b-4a76bb5d9e3c" />
+
+### 3: Grid Plug and Play Information (SCAN)
+<img width="844" height="629" alt="image" src="https://github.com/user-attachments/assets/f3cbf80d-729b-4074-bb3f-37b3dd5a0135" />
+
+### 4: Cluster Node Information
+<img width="842" height="628" alt="image" src="https://github.com/user-attachments/assets/d07bf529-bd85-41a8-8b58-006fb254da47" />
+
+### 5: Specify Network Interface Usage
+<img width="842" height="629" alt="image" src="https://github.com/user-attachments/assets/7bb5ec73-22f0-4420-b563-33957e1c8b7c" />
+
+### 6: Storage Option Information
+<img width="839" height="632" alt="image" src="https://github.com/user-attachments/assets/2174e3fb-c874-44ed-bc13-7d0c45a6339e" />
+
+### 7: Create ASM Disk Group
+<img width="832" height="631" alt="image" src="https://github.com/user-attachments/assets/17d7e0dc-84d1-4f0f-9587-25e9ee50096b" />
+
+### 8: Specify ASM Password
+<img width="839" height="631" alt="image" src="https://github.com/user-attachments/assets/9a602fc9-dc8b-48a8-9aae-99ae1753f5bc" />
+
+### 9: Automatic Self Correction
+<img width="835" height="626" alt="image" src="https://github.com/user-attachments/assets/27c51260-abd6-432b-b33c-21c9e05d0ccf" />
+
+### 10: Failure Isolation Support
+<img width="834" height="626" alt="image" src="https://github.com/user-attachments/assets/2ba34a1c-f57c-4ab4-ab3c-851102c3336b" />
+
+### 11: Specify Management Options
+<img width="844" height="632" alt="image" src="https://github.com/user-attachments/assets/3fde66b2-9b95-4154-a825-04213996a6c0" />
+
+### 12: Privileged Operating System Groups
+<img width="841" height="631" alt="image" src="https://github.com/user-attachments/assets/25eecb79-45a2-4ef5-824c-ca42e363d733" />
