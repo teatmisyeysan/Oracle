@@ -1,4 +1,4 @@
-# Oracle Database 26ai RAC Installation on Oracle Linux 10
+# Oracle Database 26ai RAC Installation on Oracle Linux 8.10
 ## Step 1: Operating System Preparation
 Perform the following steps on all nodes.
 ### Update the Operating System
@@ -845,3 +845,22 @@ Operating system:             Linux5.15.0-206.153.7.1.el8uek.x86_64
 
 ### 12: Privileged Operating System Groups
 <img width="841" height="631" alt="image" src="https://github.com/user-attachments/assets/25eecb79-45a2-4ef5-824c-ca42e363d733" />
+
+### 13: Specify Installation Location
+<img width="842" height="629" alt="image" src="https://github.com/user-attachments/assets/2a0b9961-eb5b-406c-a909-df9273f80749" />
+
+### 14: Root script configuration
+<img width="835" height="626" alt="image" src="https://github.com/user-attachments/assets/688e4686-3e8a-4193-8843-a6211522fb2f" />
+
+### 15: Perform Prerequisite Checks
+<img width="842" height="629" alt="image" src="https://github.com/user-attachments/assets/c272e5e4-9f30-4b95-938f-f8f8dca2be5c" />
+<img width="975" height="771" alt="image" src="https://github.com/user-attachments/assets/23316d41-42be-4f28-9c9a-cd388e7b16af" />
+
+### 17: Install Product 
+<img width="975" height="768" alt="image" src="https://github.com/user-attachments/assets/abbbaf10-f7ad-496d-a9fc-73e5ef85bb0b" />
+<img width="975" height="774" alt="image" src="https://github.com/user-attachments/assets/2509a5a4-93f2-4a12-8ca7-76851e2b3875" />
+
+### 19: 
+<img width="975" height="766" alt="image" src="https://github.com/user-attachments/assets/35f02900-9e15-44ba-a67d-db95732c9b47" />
+
+
