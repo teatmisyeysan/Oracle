@@ -303,3 +303,509 @@ ssh-copy-id ms-ol-node-01
 ssh-copy-id ms-ol-node-02
 ```
 ## Step 11: Install Grid Infrastructure
+### Run Cluster Verification
+```bash
+[grid@ms-ol-node-01 grid]$ ./runcluvfy.sh stage -pre crsinst -n ms-ol-node-01,ms-ol-node-02 -verbose
+This software is "230" days old. It is a best practice to update the CRS home by downloading and applying the latest release update. Refer to MOS                                                              note 756671.1 for more details.
+
+Initializing ...
+
+Performing following verification checks ...
+
+  Physical Memory ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  9.704GB (1.017534E7KB)    8GB (8388608.0KB)         passed
+    ms-ol-node-01  9.704GB (1.017534E7KB)    8GB (8388608.0KB)         passed
+  Physical Memory ...PASSED
+  Available Physical Memory ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  7.0911GB (7435600.0KB)    50MB (51200.0KB)          passed
+    ms-ol-node-01  7.3741GB (7732308.0KB)    50MB (51200.0KB)          passed
+  Available Physical Memory ...PASSED
+  Swap Size ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  16.9336GB (1.7756152E7KB)  9.704GB (1.017534E7KB)    passed
+    ms-ol-node-01  16.9336GB (1.7756152E7KB)  9.704GB (1.017534E7KB)    passed
+  Swap Size ...PASSED
+  Free Space: ms-ol-node-02:/usr,ms-ol-node-02:/var,ms-ol-node-02:/etc,ms-ol-node-02:/sbin,ms-ol-node-02:/tmp ...
+    Path              Node Name     Mount point   Available     Required      Status
+    ----------------  ------------  ------------  ------------  ------------  ------------
+    /usr              ms-ol-node-02  /             27.4541GB     25MB          passed
+    /var              ms-ol-node-02  /             27.4541GB     5MB           passed
+    /etc              ms-ol-node-02  /             27.4541GB     25MB          passed
+    /sbin             ms-ol-node-02  /             27.4541GB     10MB          passed
+    /tmp              ms-ol-node-02  /             27.4541GB     1GB           passed
+  Free Space: ms-ol-node-02:/usr,ms-ol-node-02:/var,ms-ol-node-02:/etc,ms-ol-node-02:/sbin,ms-ol-node-02:/tmp ...PASSED
+  Free Space: ms-ol-node-01:/usr,ms-ol-node-01:/var,ms-ol-node-01:/etc,ms-ol-node-01:/sbin,ms-ol-node-01:/tmp ...
+    Path              Node Name     Mount point   Available     Required      Status
+    ----------------  ------------  ------------  ------------  ------------  ------------
+    /usr              ms-ol-node-01  /             24.3516GB     25MB          passed
+    /var              ms-ol-node-01  /             24.3516GB     5MB           passed
+    /etc              ms-ol-node-01  /             24.3516GB     25MB          passed
+    /sbin             ms-ol-node-01  /             24.3516GB     10MB          passed
+    /tmp              ms-ol-node-01  /             24.3516GB     1GB           passed
+  Free Space: ms-ol-node-01:/usr,ms-ol-node-01:/var,ms-ol-node-01:/etc,ms-ol-node-01:/sbin,ms-ol-node-01:/tmp ...PASSED
+  User Existence: grid ...
+    Node Name     Status                    Comment
+    ------------  ------------------------  ------------------------
+    ms-ol-node-02  passed                    exists(54331)
+    ms-ol-node-01  passed                    exists(54331)
+
+    Users With Same UID: 54331 ...PASSED
+  User Existence: grid ...PASSED
+  Group Existence: asmadmin ...
+    Node Name     Status                    Comment
+    ------------  ------------------------  ------------------------
+    ms-ol-node-02  passed                    exists
+    ms-ol-node-01  passed                    exists
+  Group Existence: asmadmin ...PASSED
+  Group Existence: asmdba ...
+    Node Name     Status                    Comment
+    ------------  ------------------------  ------------------------
+    ms-ol-node-02  passed                    exists
+    ms-ol-node-01  passed                    exists
+  Group Existence: asmdba ...PASSED
+  Group Existence: oinstall ...
+    Node Name     Status                    Comment
+    ------------  ------------------------  ------------------------
+    ms-ol-node-02  passed                    exists
+    ms-ol-node-01  passed                    exists
+  Group Existence: oinstall ...PASSED
+  Group Membership: asmdba ...
+    Node Name         User Exists   Group Exists  User in Group  Status
+    ----------------  ------------  ------------  ------------  ----------------
+    ms-ol-node-02     yes           yes           yes           passed
+    ms-ol-node-01     yes           yes           yes           passed
+  Group Membership: asmdba ...PASSED
+  Group Membership: asmadmin ...
+    Node Name         User Exists   Group Exists  User in Group  Status
+    ----------------  ------------  ------------  ------------  ----------------
+    ms-ol-node-02     yes           yes           yes           passed
+    ms-ol-node-01     yes           yes           yes           passed
+  Group Membership: asmadmin ...PASSED
+  Group Membership: oinstall(Primary) ...
+    Node Name         User Exists   Group Exists  User in Group  Primary       Status
+    ----------------  ------------  ------------  ------------  ------------  ------------
+    ms-ol-node-02     yes           yes           yes           yes           passed
+    ms-ol-node-01     yes           yes           yes           yes           passed
+  Group Membership: oinstall(Primary) ...PASSED
+  Run Level ...
+    Node Name     run level                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  5                         3,5                       passed
+    ms-ol-node-01  5                         3,5                       passed
+  Run Level ...PASSED
+  Hard Limit: maximum open file descriptors ...
+    Node Name         Type          Available     Required      Status
+    ----------------  ------------  ------------  ------------  ----------------
+    ms-ol-node-02     hard          65536         65536         passed
+    ms-ol-node-01     hard          65536         65536         passed
+  Hard Limit: maximum open file descriptors ...PASSED
+  Soft Limit: maximum open file descriptors ...
+    Node Name         Type          Available     Required      Status
+    ----------------  ------------  ------------  ------------  ----------------
+    ms-ol-node-02     soft          1024          1024          passed
+    ms-ol-node-01     soft          1024          1024          passed
+  Soft Limit: maximum open file descriptors ...PASSED
+  Hard Limit: maximum user processes ...
+    Node Name         Type          Available     Required      Status
+    ----------------  ------------  ------------  ------------  ----------------
+    ms-ol-node-02     hard          16384         16384         passed
+    ms-ol-node-01     hard          16384         16384         passed
+  Hard Limit: maximum user processes ...PASSED
+  Soft Limit: maximum user processes ...
+    Node Name         Type          Available     Required      Status
+    ----------------  ------------  ------------  ------------  ----------------
+    ms-ol-node-02     soft          16384         2047          passed
+    ms-ol-node-01     soft          16384         2047          passed
+  Soft Limit: maximum user processes ...PASSED
+  Soft Limit: maximum stack size ...
+    Node Name         Type          Available     Required      Status
+    ----------------  ------------  ------------  ------------  ----------------
+    ms-ol-node-02     soft          10240         10240         passed
+    ms-ol-node-01     soft          10240         10240         passed
+  Soft Limit: maximum stack size ...PASSED
+  Architecture ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  x86_64                    x86_64                    passed
+    ms-ol-node-01  x86_64                    x86_64                    passed
+  Architecture ...PASSED
+  OS Kernel Version ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  5.15.0-206.153.7.1.el8uek.x86_64  5.4.17                    passed
+    ms-ol-node-01  5.15.0-206.153.7.1.el8uek.x86_64  5.4.17                    passed
+  OS Kernel Version ...PASSED
+  OS Kernel Parameter: semmsl ...
+    Node Name         Current       Configured    Required      Status        Comment
+    ----------------  ------------  ------------  ------------  ------------  ------------
+    ms-ol-node-01     250           250           250           passed
+    ms-ol-node-02     250           250           250           passed
+  OS Kernel Parameter: semmsl ...PASSED
+  OS Kernel Parameter: semmns ...
+    Node Name         Current       Configured    Required      Status        Comment
+    ----------------  ------------  ------------  ------------  ------------  ------------
+    ms-ol-node-01     32000         32000         32000         passed
+    ms-ol-node-02     32000         32000         32000         passed
+  OS Kernel Parameter: semmns ...PASSED
+  OS Kernel Parameter: semopm ...
+    Node Name         Current       Configured    Required      Status        Comment
+    ----------------  ------------  ------------  ------------  ------------  ------------
+    ms-ol-node-01     100           100           100           passed
+    ms-ol-node-02     100           100           100           passed
+  OS Kernel Parameter: semopm ...PASSED
+  OS Kernel Parameter: semmni ...
+    Node Name         Current       Configured    Required      Status        Comment
+    ----------------  ------------  ------------  ------------  ------------  ------------
+    ms-ol-node-01     128           128           128           passed
+    ms-ol-node-02     128           128           128           passed
+  OS Kernel Parameter: semmni ...PASSED
+  OS Kernel Parameter: shmmax ...
+    Node Name         Current       Configured    Required      Status        Comment
+    ----------------  ------------  ------------  ------------  ------------  ------------
+    ms-ol-node-01     4398046511104  4398046511104  5209774080    passed
+    ms-ol-node-02     4398046511104  4398046511104  5209774080    passed
+  OS Kernel Parameter: shmmax ...PASSED
+  OS Kernel Parameter: shmmni ...
+    Node Name         Current       Configured    Required      Status        Comment
+    ----------------  ------------  ------------  ------------  ------------  ------------
+    ms-ol-node-01     4096          4096          4096          passed
+    ms-ol-node-02     4096          4096          4096          passed
+  OS Kernel Parameter: shmmni ...PASSED
+  OS Kernel Parameter: shmall ...
+    Node Name         Current       Configured    Required      Status        Comment
+    ----------------  ------------  ------------  ------------  ------------  ------------
+    ms-ol-node-01     1073741824    1073741824    1073741824    passed
+    ms-ol-node-02     1073741824    1073741824    1073741824    passed
+  OS Kernel Parameter: shmall ...PASSED
+  OS Kernel Parameter: file-max ...
+    Node Name         Current       Configured    Required      Status        Comment
+    ----------------  ------------  ------------  ------------  ------------  ------------
+    ms-ol-node-01     6815744       6815744       6815744       passed
+    ms-ol-node-02     6815744       6815744       6815744       passed
+  OS Kernel Parameter: file-max ...PASSED
+  OS Kernel Parameter: ip_local_port_range ...
+    Node Name         Current       Configured    Required      Status        Comment
+    ----------------  ------------  ------------  ------------  ------------  ------------
+    ms-ol-node-01     between 9000 & 65535  between 9000 & 65535  between 9000 & 65535  passed
+    ms-ol-node-02     between 9000 & 65535  between 9000 & 65535  between 9000 & 65535  passed
+  OS Kernel Parameter: ip_local_port_range ...PASSED
+  OS Kernel Parameter: rmem_default ...
+    Node Name         Current       Configured    Required      Status        Comment
+    ----------------  ------------  ------------  ------------  ------------  ------------
+    ms-ol-node-01     262144        262144        262144        passed
+    ms-ol-node-02     262144        262144        262144        passed
+  OS Kernel Parameter: rmem_default ...PASSED
+  OS Kernel Parameter: rmem_max ...
+    Node Name         Current       Configured    Required      Status        Comment
+    ----------------  ------------  ------------  ------------  ------------  ------------
+    ms-ol-node-01     4194304       4194304       4194304       passed
+    ms-ol-node-02     4194304       4194304       4194304       passed
+  OS Kernel Parameter: rmem_max ...PASSED
+  OS Kernel Parameter: wmem_default ...
+    Node Name         Current       Configured    Required      Status        Comment
+    ----------------  ------------  ------------  ------------  ------------  ------------
+    ms-ol-node-01     262144        262144        262144        passed
+    ms-ol-node-02     262144        262144        262144        passed
+  OS Kernel Parameter: wmem_default ...PASSED
+  OS Kernel Parameter: wmem_max ...
+    Node Name         Current       Configured    Required      Status        Comment
+    ----------------  ------------  ------------  ------------  ------------  ------------
+    ms-ol-node-01     1048576       1048576       1048576       passed
+    ms-ol-node-02     1048576       1048576       1048576       passed
+  OS Kernel Parameter: wmem_max ...PASSED
+  OS Kernel Parameter: aio-max-nr ...
+    Node Name         Current       Configured    Required      Status        Comment
+    ----------------  ------------  ------------  ------------  ------------  ------------
+    ms-ol-node-01     1048576       1048576       1048576       passed
+    ms-ol-node-02     1048576       1048576       1048576       passed
+  OS Kernel Parameter: aio-max-nr ...PASSED
+  OS Kernel Parameter: panic_on_oops ...
+    Node Name         Current       Configured    Required      Status        Comment
+    ----------------  ------------  ------------  ------------  ------------  ------------
+    ms-ol-node-01     1             1             1             passed
+    ms-ol-node-02     1             1             1             passed
+  OS Kernel Parameter: panic_on_oops ...PASSED
+  OS Kernel Parameter: kernel.panic ...
+    Node Name         Current       Configured    Required      Status        Comment
+    ----------------  ------------  ------------  ------------  ------------  ------------
+    ms-ol-node-01     10            10            at least 1    passed
+    ms-ol-node-02     10            10            at least 1    passed
+  OS Kernel Parameter: kernel.panic ...PASSED
+  Package: binutils-2.30-113.0.2 ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  binutils-2.30-123.0.2.el8  binutils-2.30-113.0.2     passed
+    ms-ol-node-01  binutils-2.30-123.0.2.el8  binutils-2.30-113.0.2     passed
+  Package: binutils-2.30-113.0.2 ...PASSED
+  Package: libgcc-8.5.0 (x86_64) ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  libgcc(x86_64)-8.5.0-21.0.1.el8  libgcc(x86_64)-8.5.0      passed
+    ms-ol-node-01  libgcc(x86_64)-8.5.0-21.0.1.el8  libgcc(x86_64)-8.5.0      passed
+  Package: libgcc-8.5.0 (x86_64) ...PASSED
+  Package: libstdc++-8.5.0 (x86_64) ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  libstdc++(x86_64)-8.5.0-21.0.1.el8  libstdc++(x86_64)-8.5.0   passed
+    ms-ol-node-01  libstdc++(x86_64)-8.5.0-21.0.1.el8  libstdc++(x86_64)-8.5.0   passed
+  Package: libstdc++-8.5.0 (x86_64) ...PASSED
+  Package: compat-openssl10-1.0.2 (x86_64) ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  compat-openssl10(x86_64)-1.0.2o-4.el8_10.3  compat-openssl10(x86_64)-1.0.2  passed
+    ms-ol-node-01  compat-openssl10(x86_64)-1.0.2o-4.el8_10.3  compat-openssl10(x86_64)-1.0.2  passed
+  Package: compat-openssl10-1.0.2 (x86_64) ...PASSED
+  Package: fontconfig-2.13.1 (x86_64) ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  fontconfig(x86_64)-2.13.1-4.el8  fontconfig(x86_64)-2.13.1  passed
+    ms-ol-node-01  fontconfig(x86_64)-2.13.1-4.el8  fontconfig(x86_64)-2.13.1  passed
+  Package: fontconfig-2.13.1 (x86_64) ...PASSED
+  Package: sysstat-11.7.3 ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  sysstat-11.7.3-13.0.3.el8_10  sysstat-11.7.3            passed
+    ms-ol-node-01  sysstat-11.7.3-13.0.3.el8_10  sysstat-11.7.3            passed
+  Package: sysstat-11.7.3 ...PASSED
+  Package: make-4.2.1 ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  make-4.2.1-11.el8         make-4.2.1                passed
+    ms-ol-node-01  make-4.2.1-11.el8         make-4.2.1                passed
+  Package: make-4.2.1 ...PASSED
+  Package: glibc-2.28 (x86_64) ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  glibc(x86_64)-2.28-251.0.2.el8  glibc(x86_64)-2.28        passed
+    ms-ol-node-01  glibc(x86_64)-2.28-251.0.2.el8  glibc(x86_64)-2.28        passed
+  Package: glibc-2.28 (x86_64) ...PASSED
+  Package: glibc-devel-2.28 (x86_64) ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  glibc-devel(x86_64)-2.28-251.0.2.el8  glibc-devel(x86_64)-2.28  passed
+    ms-ol-node-01  glibc-devel(x86_64)-2.28-251.0.2.el8  glibc-devel(x86_64)-2.28  passed
+  Package: glibc-devel-2.28 (x86_64) ...PASSED
+  Package: libaio-0.3.112 (x86_64) ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  libaio(x86_64)-0.3.112-1.el8  libaio(x86_64)-0.3.112    passed
+    ms-ol-node-01  libaio(x86_64)-0.3.112-1.el8  libaio(x86_64)-0.3.112    passed
+  Package: libaio-0.3.112 (x86_64) ...PASSED
+  Package: nfs-utils-2.3.3-51 ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  nfs-utils-2.3.3-59.0.1.el8  nfs-utils-2.3.3-51        passed
+    ms-ol-node-01  nfs-utils-2.3.3-59.0.1.el8  nfs-utils-2.3.3-51        passed
+  Package: nfs-utils-2.3.3-51 ...PASSED
+  Package: smartmontools-7.1-1 ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  smartmontools-7.1-3.el8   smartmontools-7.1-1       passed
+    ms-ol-node-01  smartmontools-7.1-3.el8   smartmontools-7.1-1       passed
+  Package: smartmontools-7.1-1 ...PASSED
+  Package: net-tools-2.0-0.52 ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  net-tools-2.0-0.52.20160912git.el8  net-tools-2.0-0.52        passed
+    ms-ol-node-01  net-tools-2.0-0.52.20160912git.el8  net-tools-2.0-0.52        passed
+  Package: net-tools-2.0-0.52 ...PASSED
+  Package: policycoreutils-2.9-1 ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  policycoreutils-2.9-25.0.1.el8  policycoreutils-2.9-1     passed
+    ms-ol-node-01  policycoreutils-2.9-25.0.1.el8  policycoreutils-2.9-1     passed
+  Package: policycoreutils-2.9-1 ...PASSED
+  Package: policycoreutils-python-utils-2.9-1 ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  policycoreutils-python-utils-2.9-25.0.1.el8  policycoreutils-python-utils-2.9-1  passed
+    ms-ol-node-01  policycoreutils-python-utils-2.9-25.0.1.el8  policycoreutils-python-utils-2.9-1  passed
+  Package: policycoreutils-python-utils-2.9-1 ...PASSED
+  Users With Same UID: 0 ...PASSED
+  Current Group ID ...PASSED
+  Root user consistency ...
+    Node Name                             Status
+    ------------------------------------  ------------------------
+    ms-ol-node-02                         passed
+    ms-ol-node-01                         passed
+  Root user consistency ...PASSED
+  Package: psmisc-22.6-19 ...
+    Node Name     Available                 Required                  Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  psmisc-23.1-5.el8         psmisc-22.6-19            passed
+    ms-ol-node-01  psmisc-23.1-5.el8         psmisc-22.6-19            passed
+  Package: psmisc-22.6-19 ...PASSED
+  Host name ...PASSED
+  Node Connectivity ...
+    Hosts File ...
+    Node Name                             Status
+    ------------------------------------  ------------------------
+    ms-ol-node-01                         passed
+    ms-ol-node-02                         passed
+    Hosts File ...PASSED
+
+Interface information for node "ms-ol-node-02"
+
+  Name   IP Address      Subnet          Gateway         Def. Gateway    HW Address        MTU
+  ------ --------------- --------------- --------------- --------------- ----------------- ------
+  ens33  10.118.200.112  10.118.200.0    0.0.0.0         192.168.60.254  00:50:56:A6:27:6A 1500
+  ens35  192.168.60.112  192.168.60.0    0.0.0.0         192.168.60.254  00:50:56:A6:B1:8C 1500
+
+Interface information for node "ms-ol-node-01"
+
+  Name   IP Address      Subnet          Gateway         Def. Gateway    HW Address        MTU
+  ------ --------------- --------------- --------------- --------------- ----------------- ------
+  ens33  10.118.200.111  10.118.200.0    0.0.0.0         192.168.60.254  00:50:56:A6:F0:ED 1500
+  ens35  192.168.60.111  192.168.60.0    0.0.0.0         192.168.60.254  00:50:56:A6:03:03 1500
+
+Check: MTU consistency of the subnet "192.168.60.0".
+
+    Node              Name          IP Address    Subnet        MTU
+    ----------------  ------------  ------------  ------------  ----------------
+    ms-ol-node-02     ens35         192.168.60.112  192.168.60.0  1500
+    ms-ol-node-01     ens35         192.168.60.111  192.168.60.0  1500
+
+Check: MTU consistency of the subnet "10.118.200.0".
+
+    Node              Name          IP Address    Subnet        MTU
+    ----------------  ------------  ------------  ------------  ----------------
+    ms-ol-node-02     ens33         10.118.200.112  10.118.200.0  1500
+    ms-ol-node-01     ens33         10.118.200.111  10.118.200.0  1500
+
+    Source                      Destination                 Connected?
+    --------------------------  --------------------------  --------------------------
+    ms-ol-node-01[ens35:192.168.60.111]  ms-ol-node-02[ens35:192.168.60.112]  yes
+
+    Source                      Destination                 Connected?
+    --------------------------  --------------------------  --------------------------
+    ms-ol-node-01[ens33:10.118.200.111]  ms-ol-node-02[ens33:10.118.200.112]  yes
+    Check that maximum (MTU) size packet goes through subnet ...PASSED
+    subnet mask consistency for subnet "192.168.60.0" ...PASSED
+    subnet mask consistency for subnet "10.118.200.0" ...PASSED
+  Node Connectivity ...PASSED
+  Multicast or broadcast check ...
+    Checking subnet "10.118.200.0" for multicast communication with multicast
+    group "224.0.0.251"
+
+    Subnet        Network Type              Multicast Enabled
+    ------------  ------------------------  ------------------------
+    10.118.200.0  PRIVATE                   TRUE
+  Multicast or broadcast check ...PASSED
+  Network Time Protocol (NTP) ...PASSED
+  Same core file name pattern ...PASSED
+  User Mask ...
+    Node Name     Available                 Required                  Comment
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  0022                      0022                      passed
+    ms-ol-node-01  0022                      0022                      passed
+  User Mask ...PASSED
+  User Not In Group "root": grid ...
+    Node Name     Status                    Comment
+    ------------  ------------------------  ------------------------
+    ms-ol-node-02  passed                    does not exist
+    ms-ol-node-01  passed                    does not exist
+  User Not In Group "root": grid ...PASSED
+  Time zone consistency ...PASSED
+  Path existence, ownership, permissions and attributes ...
+    Path "/var" ...PASSED
+    Path "/dev/shm" ...PASSED
+  Path existence, ownership, permissions and attributes ...PASSED
+  Time offset between nodes ...PASSED
+  resolv.conf Integrity ...
+    Node Name                             Status
+    ------------------------------------  ------------------------
+    ms-ol-node-01                         passed
+    ms-ol-node-02                         passed
+
+checking response for name "ms-ol-node-01" from each of the name servers
+specified in "/etc/resolv.conf"
+
+    Node Name     Source                    Comment                   Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-01  8.8.8.8                   IPv4                      failed
+
+checking response for name "ms-ol-node-02" from each of the name servers
+specified in "/etc/resolv.conf"
+
+    Node Name     Source                    Comment                   Status
+    ------------  ------------------------  ------------------------  ----------
+    ms-ol-node-02  8.8.8.8                   IPv4                      failed
+  resolv.conf Integrity ...FAILED (PRVG-10048)
+  DNS/NIS name service ...PASSED
+  Daemon "avahi-daemon" not configured and running ...
+    Node Name     Configured                Status
+    ------------  ------------------------  ------------------------
+    ms-ol-node-02  no                        passed
+    ms-ol-node-01  no                        passed
+
+    Node Name     Running?                  Status
+    ------------  ------------------------  ------------------------
+    ms-ol-node-02  no                        passed
+    ms-ol-node-01  no                        passed
+  Daemon "avahi-daemon" not configured and running ...PASSED
+  Daemon "proxyt" not configured and running ...
+    Node Name     Configured                Status
+    ------------  ------------------------  ------------------------
+    ms-ol-node-02  no                        passed
+    ms-ol-node-01  no                        passed
+
+    Node Name     Running?                  Status
+    ------------  ------------------------  ------------------------
+    ms-ol-node-02  no                        passed
+    ms-ol-node-01  no                        passed
+  Daemon "proxyt" not configured and running ...PASSED
+  Domain Sockets ...PASSED
+  User Equivalence ...PASSED
+  RPM Package Manager database ...INFORMATION (PRVG-11250)
+  Maximum locked memory check ...PASSED
+  /dev/shm mounted as temporary file system ...PASSED
+  File system mount option hidepid for proc filesystem ...PASSED
+  SCP binary check ...PASSED
+  Systemd login manager IPC parameter ...PASSED
+  cgroup OS compatibility ...INFORMATION (PRVG-11250)
+  ORAchk health score ...INFORMATION (PRVH-1507)
+
+Pre-check for cluster services setup was unsuccessful on all the nodes.
+
+
+Failures were encountered during execution of CVU verification request "stage -pre crsinst".
+
+resolv.conf Integrity ...FAILED
+ms-ol-node-02: PRVG-10048 : Name "ms-ol-node-02" was not resolved to an address
+               of the specified type by name servers "8.8.8.8".
+
+ms-ol-node-01: PRVG-10048 : Name "ms-ol-node-01" was not resolved to an address
+               of the specified type by name servers "8.8.8.8".
+
+RPM Package Manager database ...INFORMATION
+PRVG-11250 : The check "RPM Package Manager database" was not performed because
+it needs 'root' user privileges.
+
+Refer to My Oracle Support notes "2548970.1" for more details regarding errors
+PRVG-11250".
+
+cgroup OS compatibility ...INFORMATION
+PRVG-11250 : The check "cgroup OS compatibility" was not performed because it
+needs 'root' user privileges.
+
+Refer to My Oracle Support notes "2548970.1" for more details regarding errors
+PRVG-11250".
+
+ORAchk health score ...INFORMATION
+PRVH-1507 : ORAchk/EXAchk checks are skipped.
+
+
+CVU operation performed:      stage -pre crsinst
+Date:                         Aug 27, 2026, 4:09:11 PM
+CVU version:                  23.26.1.0.0 (010926x8664)
+CVU home:                     /u01/app/26.0.0/grid
+User:                         grid
+Operating system:             Linux5.15.0-206.153.7.1.el8uek.x86_64
+[grid@ms-ol-node-01 grid]$
+
+```
