@@ -199,8 +199,9 @@ vi /etc/hosts
 [root@ms-ol-node-01 ~]#
 ```
 ## Step 6: Configure Shared Storage (ASM)
+### Create partitions for the disks
 ```bash
-fdisk /dev/sdb
+fdisk /dev/sdc
 
 [root@ms-ol-node-01 ~]# lsblk
 NAME        MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
@@ -215,9 +216,76 @@ sdb           8:16   0   60G  0 disk
   └─db-u01  252:2    0   60G  0 lvm  /u01
 sdc           8:32   0   50G  0 disk
 └─sdc1        8:33   0   50G  0 part
-sdd           8:48   0  100G  0 disk
 sr0          11:0    1 13.2G  0 rom  /run/media/root/OL-8-10-0-BaseOS-x86_64
 [root@ms-ol-node-01 ~]#
 [root@ms-ol-node-01 ~]#
 
+```
+### Create udev rule
+```bash
+vi /etc/udev/rules.d/99-oracle-asm.rules
+[root@ms-ol-node-01 ~]# cat /etc/udev/rules.d/99-oracle-asm.rules
+KERNEL=="sdc1", OWNER="grid", GROUP="asmdba", MODE="0660"
+[root@ms-ol-node-01 ~]#
+```
+### Reload the udev rules
+```bash
+udevadm control --reload-rules && udevadm trigger
+
+[root@ms-ol-node-01 soft]# udevadm control --reload-rules
+[root@ms-ol-node-01 soft]# udevadm trigger
+[root@ms-ol-node-01 soft]#
+[root@ms-ol-node-01 soft]# ls -l /dev/sdc1
+brw-rw----. 1 grid asmdba 8, 33 Aug 27 14:15 /dev/sdc1
+[root@ms-ol-node-01 soft]#
+```
+## Step 7: Create Directory Structure
+```bash
+mkdir -p /u01/app/26.0.0/grid
+mkdir -p /u01/app/grid
+mkdir -p /u01/app/oracle
+mkdir -p /u01/app/oracle/product/26.0.0/dbhome_1
+
+chown -R grid:oinstall /u01
+chown -R oracle:oinstall /u01/app/oracle
+chmod -R 775 /u01
+```
+## Step 8: Configure Environment Variables
+```bash
+Grid Node1:
+vi .bash_profile
+export ORACLE_SID=+ASM1
+export ORACLE_BASE=/u01/app/grid
+export ORACLE_HOME=/u01/app/26.0.0/grid
+export PATH=$ORACLE_HOME/bin:$PATH
+
+Grid Node2:
+vi .bash_profile
+export ORACLE_SID=+ASM2
+export ORACLE_BASE=/u01/app/grid
+export ORACLE_HOME=/u01/app/26.0.0/grid
+export PATH=$ORACLE_HOME/bin:$PATH
+
+Oracle Node1:
+vi .bash_profile
+export ORACLE_SID=cdb26ai1
+export ORACLE_BASE=/u01/app/oracle
+export ORACLE_HOME=$ORACLE_BASE/product/26.0.0/dbhome_1
+export PATH=$ORACLE_HOME/bin:$PATH
+
+Oracle Node2:
+vi .bash_profile
+export ORACLE_SID=cdb26ai2
+export ORACLE_BASE=/u01/app/oracle
+export ORACLE_HOME=$ORACLE_BASE/product/26.0.0/dbhome_1
+export PATH=$ORACLE_HOME/bin:$PATH
+```
+
+## Step 9: Disable Firewall and SELinux
+```bash
+sudo systemctl stop firewalld
+sudo systemctl disable firewalld
+
+sudo setenforce 0
+sudo sed -i 's/SELINUX=enforcing/SELINUX=permissive/' /etc/selinux/config
 ```
