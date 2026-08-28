@@ -1,4 +1,4 @@
-# Grid Infrastructure setup
+# Oracle Database 26ai RAC Installation on Oracle Linux 10
 ## Step 1: Operating System Preparation
 Perform the following steps on all nodes.
 ### Update the Operating System
@@ -180,8 +180,8 @@ vi /etc/hosts
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
 
 #Public IP
-10.118.200.111 ms-ol-node-01.localdomain ms-ol-node-01
-10.118.200.112 ms-ol-node-02.localdomain ms-ol-node-02
+10.xxx.200.111 ms-ol-node-01.localdomain ms-ol-node-01
+10.xxx.200.112 ms-ol-node-02.localdomain ms-ol-node-02
 
 #Private IP
 192.xxx.60.111 ms-ol-node-01-priv.localdomain ms-ol-node-01-priv
@@ -289,3 +289,17 @@ sudo systemctl disable firewalld
 sudo setenforce 0
 sudo sed -i 's/SELINUX=enforcing/SELINUX=permissive/' /etc/selinux/config
 ```
+## Step 10: Configure SSH Equivalence
+As grid user:
+```bash
+ssh-keygen -t rsa
+ssh-copy-id ms-ol-node-01
+ssh-copy-id ms-ol-node-02
+```
+As oracle user:
+```bash
+ssh-keygen -t rsa
+ssh-copy-id ms-ol-node-01
+ssh-copy-id ms-ol-node-02
+```
+## Step 11: Install Grid Infrastructure
